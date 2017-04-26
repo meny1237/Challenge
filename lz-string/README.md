@@ -38,5 +38,5 @@ Bonus Mission:
 When calling ```javascript _compress(string)``` directly, the browser got stucked because
 of endless devilish while loop, in order to understand what happened there, I added an "debug"
 messages using ```javascript alert(string)``` function which made me notice that the variable
-bitsPerChar - which is nessecary to get out of the loop was undefined! so in order to fix the problem
+bitsPerChar - which is necessary to get out of the loop was undefined! so in order to fix the problem
 I replaced the while(true) loop with a for loop that was before the while loop, which produces the same results.
