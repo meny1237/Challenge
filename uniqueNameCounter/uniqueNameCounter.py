@@ -90,7 +90,8 @@ def check_unique(first_name, last_name, second_first_name, second_last_name):
     if first_name != second_first_name:
         # First we will check for a typo mistake and then we will check for nickname.
         if not typo_mistake(first_name, second_first_name):
-            if not is_nickname(first_name, second_first_name):
+            # We need to check both names for nickname because we don't know which one of the names might be nickname
+            if not (is_nickname(first_name, second_first_name) or is_nickname(second_first_name, first_name)):
                 first_names_equal = False
     if first_names_equal:
         # If the first names represents the same persons, then we move to the last names
