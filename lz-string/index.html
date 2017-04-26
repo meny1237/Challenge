@@ -47,17 +47,18 @@ Debug Log:<br>
 <script type="text/javascript" src="lz-string.js"> </script>
 <!-- Running some test inputs over LZString -->
 <script type="text/javascript">
-	html_log("Compress [1]:");
+	html_log("Compress [1]: Shrimp");
 	var output = LZString.compressToEncodedURIComponent("Let's put another shrimp on the barbie!");
-	html_log(output); 
+	html_log(output);
 	html_log("Compress [2]:");
 	var output = LZString.compressToEncodedURIComponent("Transformers \n More than meets the eye \n Transformers \n Robots in disguise!");
-	html_log(output); 	
+	html_log(output);
 
 	//Uncomment the following lines to try out the bonus mission:
+	html_log("3rd stage:");
 	var input="the narwhal bacons at midnight";
-	//LZString._compress(input);
-
+	var output = LZString._compress(input);
+	html_log(output);
 </script>
 
 

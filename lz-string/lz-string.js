@@ -19,7 +19,7 @@ function getBaseValue(alphabet, character) {
   if (!baseReverseDic[alphabet]) {
     baseReverseDic[alphabet] = {};
     for (var i=0 ; i<alphabet.length ; i++) {
-      baseReverseDic[alphabet][alphabet[i]] = i;
+      baseReverseDic[alphabet][alphabet.charAt(i)] = i;
     }
   }
   return baseReverseDic[alphabet][character];
@@ -124,7 +124,7 @@ var LZString = {
         ii;
 
     for (ii = 0; ii < uncompressed.length; ii += 1) {
-      context_c = uncompressed[ii];
+      context_c = uncompressed.charAt(ii);
       if (!Object.prototype.hasOwnProperty.call(context_dictionary,context_c)) {
         context_dictionary[context_c] = context_dictSize++;
         context_dictionaryToCreate[context_c] = true;
@@ -301,6 +301,8 @@ var LZString = {
     // Mark the end of the stream
     value = 2;
     for (i=0 ; i<context_numBits ; i++) {
+      alert("Here");
+      alert(bitsPerChar);
       context_data_val = (context_data_val << 1) | (value&1);
       if (context_data_position == bitsPerChar-1) {
         context_data_position = 0;
@@ -311,9 +313,11 @@ var LZString = {
       }
       value = value >> 1;
     }
-
     // Flush the last char
-    while (true) {
+    for(i=0; i<context_numBits; i++) { //getting rid of the of the while(true)
+      //Problem is here, because bitsPerChar is undefined and
+      //getCharFromInt is also undefined when directly calling _compress without
+      //specifing the right parameters.
       context_data_val = (context_data_val << 1);
       if (context_data_position == bitsPerChar-1) {
         context_data.push(getCharFromInt(context_data_val));
@@ -471,7 +475,7 @@ var LZString = {
         entry = dictionary[c];
       } else {
         if (c === dictSize) {
-          entry = w + w[0];
+          entry = w + w.charAt(0);
         } else {
           return null;
         }
@@ -479,7 +483,7 @@ var LZString = {
       result.push(entry);
 
       // Add w+entry[0] to the dictionary.
-      dictionary[dictSize++] = w + entry[0];
+      dictionary[dictSize++] = w + entry.charAt(0);
       enlargeIn--;
 
       w = entry;
